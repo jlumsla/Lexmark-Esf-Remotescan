@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE bundle PUBLIC "-//LES//Service Binder 1.0//EN" "file:./metadata.dtd">
+
+<!-- For more information on Service Binder, see the documentation:
+     http://gravity.sourceforge.net/servicebinder/
+     $ packageName = com.sharpsec.synappx.go.remotescan
+-->
+
+<bundle>
+   <!-- For each "component" in the bundle that requires or provides
+        services, a "component" section should exist and specify
+        the class that implements the component.
+   -->
+    <component class="com.sharpsec.synappx.go.remotescan.RemotescanProfile">
+    <property name="service.pid" type="string" value="goremotescan" />
+    <provides service="org.osgi.service.cm.ManagedService" />
+	   <requires service="com.lexmark.prtapp.settings.SettingsAdmin" filter=""
+	        cardinality="1..1" policy="static" bind-method="addSettingsAdmin"
+	        unbind-method="removeSettingsAdmin" />
+	   <!-- If this bundle requires a service, a "requires" line as shown below
+	        should be provided.  Multiple "requires" lines can be present. -->
+	   <!-- requires service="com.sharpsec.synappx.go.remotescan.RemotescanProfileService" filter=""
+	        cardinality="1..n" policy="dynamic" bind-method="addRemotescanProfileService"
+	        unbind-method="removeRemotescanProfileService" / -->
+	   <!-- If this bundle provides any services, a "provides" line as shown below
+	        should be provided.  Multiple "provides" lines can be present. -->
+       <provides service="com.lexmark.prtapp.profile.PrtappProfile"/>
+
+    </component>
+
+    <component class="com.sharpsec.synappx.go.remotescan.ScanApp">
+      <requires service="org.osgi.service.http.HttpService" 
+                filter="" cardinality="1..1" policy="dynamic"
+                bind-method="addHttpService" unbind-method="removeHttpService" />
+      <provides service="com.lexmark.prtapp.webapp.WebApp" />
+    </component>
+	
+</bundle>

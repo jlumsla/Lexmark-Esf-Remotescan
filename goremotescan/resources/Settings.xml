@@ -1,0 +1,16 @@
+<!-- Example of some common setting formations. -->
+<!DOCTYPE settings PUBLIC "-//LES//Settings//EN" "file:./Settings.dtd">
+
+<settings>
+   <global>
+      
+      <!-- A string setting.  Again, default value is required.  The length
+           constraints are optional, but usually pretty helpful. -->
+           
+      <element name="settings.Example" type="String">
+         <description value="settings.Example.description" />
+         <default value="Bundle Example" />
+         <length min="2" max="50" />
+      </element>
+   </global>
+</settings>
